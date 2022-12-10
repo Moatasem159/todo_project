@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,14 +16,20 @@ class ThemeCubit extends Cubit<ThemesStates>{
     primaryColorLight: Colors.white,
     primaryColorDark: Colors.deepOrange,
     floatingActionButtonTheme:
-    FloatingActionButtonThemeData(backgroundColor:Color(0xFF323232),),
+    FloatingActionButtonThemeData(
+        backgroundColor:primaryDark,
+        foregroundColor: Colors.white,
+    ),
     primaryIconTheme: IconThemeData(color: Colors.white),
     iconTheme: IconThemeData(
       color: Colors.white60,
     ),
     textTheme: TextTheme(
       bodyText1: GoogleFonts.workSans(
-          color: Colors.white, fontSize: 25, fontWeight: FontWeight.w600),
+          color: Colors.white,
+          fontSize: 25,
+          fontWeight: FontWeight.w600
+      ),
       subtitle1: GoogleFonts.workSans(
         color: Colors.white,
         fontSize: 15,
@@ -53,7 +58,8 @@ class ThemeCubit extends Cubit<ThemesStates>{
       button: GoogleFonts.workSans(),
       caption: GoogleFonts.workSans(),
     ),
-    primaryColor: Color(0xFF323232),
+    primaryColor: primaryDark,
+    primarySwatch:primaryDark ,
     scaffoldBackgroundColor: Color(0xFF191919),
     appBarTheme: AppBarTheme(
       titleTextStyle: GoogleFonts.workSans(fontSize: 22, color: Colors.white),
@@ -73,7 +79,12 @@ class ThemeCubit extends Cubit<ThemesStates>{
     iconTheme: IconThemeData(
       color: Colors.grey,
     ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryLight,
+      foregroundColor: Colors.white
+    ),
     primaryColor: primaryLight,
+    primarySwatch: primaryLight,
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
         titleTextStyle: GoogleFonts.workSans(
@@ -82,15 +93,14 @@ class ThemeCubit extends Cubit<ThemesStates>{
         ),
         elevation: 20,
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.deepOrange,
+          statusBarColor:primaryLight,
           statusBarIconBrightness: Brightness.light,
         ),
         backgroundColor: primaryLight
     ),
-    primarySwatch: primaryLight,
     textTheme: TextTheme(
       bodyText1:GoogleFonts.workSans(
-          color: Colors.black87,
+        color: Colors.white,
           fontSize:25,
           fontWeight: FontWeight.w600
       ),
@@ -119,7 +129,6 @@ class ThemeCubit extends Cubit<ThemesStates>{
       headline3: GoogleFonts.workSans(),
       headline5: GoogleFonts.workSans(),
     ),
-
   );
 
 

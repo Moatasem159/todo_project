@@ -14,7 +14,7 @@ class ToDoCubit extends Cubit<ToDoStates>{
   int current = 0;
   List<BottomNavigationBarItem> navigationItems =
   [
-    BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.tasks), label: "Tasks"),
+    BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.listCheck), label: "Tasks"),
     BottomNavigationBarItem(icon: Icon(Icons.check_box_outlined), label: "Done Tasks"),
     BottomNavigationBarItem(icon: Icon(Icons.archive_outlined), label: "Archive"),];
   List<Widget> screens =
@@ -117,7 +117,7 @@ class ToDoCubit extends Cubit<ToDoStates>{
 
   }
 
-  void updateData({required String status,required int id})async{
+   updateData({required String status,required int id})async{
      dataBase!.rawUpdate('UPDATE tasks SET status = ? WHERE id = ?',
      ['$status',id],
      ).then((value){
@@ -126,7 +126,7 @@ class ToDoCubit extends Cubit<ToDoStates>{
      });
   }
 
-  void deleteData({required int idD})async{
+   deleteData({required int idD})async{
      dataBase!.rawDelete('DELETE FROM tasks WHERE id = ?',
      [idD],
      ).then((value){

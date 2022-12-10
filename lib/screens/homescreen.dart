@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:todo/Cubit/States.dart';
 import 'package:todo/Cubit/todo_cubit.dart';
 import 'package:todo/Cubit/ThemeCubit.dart';
-
 import 'package:todo/Global.dart';
 
 
@@ -35,20 +35,44 @@ class Home extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: Text(cubit.title[cubit.current]),),
           body: cubit.screens[cubit.current],
-          bottomNavigationBar: BottomNavigationBar(
-              elevation: 0,
-              unselectedItemColor: Theme.of(context).primaryColorLight,
-              backgroundColor: Theme.of(context).primaryColor,
-              selectedItemColor: Theme.of(context).primaryColorDark,
-              unselectedLabelStyle: Theme.of(context).textTheme.subtitle1,
-              selectedLabelStyle:Theme.of(context).textTheme.subtitle1,
-              type: BottomNavigationBarType.fixed,
-              showUnselectedLabels: false,
-              onTap: (value) {
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(3.0).copyWith(left: 6,right: 6,bottom: 9),
+            child: GNav(
+              rippleColor: Theme.of(context).primaryColor.withOpacity(0.1), // tab button ripple color when pressed
+              hoverColor: Theme.of(context).primaryColorLight, // tab button hover color
+              haptic: true, // haptic feedback
+              tabBorderRadius: 15,
+              tabActiveBorder: Border.all(color: Theme.of(context).primaryColor, width: 1.3), // tab button border
+              tabBorder: Border.all(color: Theme.of(context).primaryColorLight.withOpacity(0.4), width: 1.5), // tab button border
+              tabShadow: [BoxShadow(color: Theme.of(context).primaryColorLight.withOpacity(0.10), blurRadius: 10)], // tab button shadow
+              curve: Curves.easeOutExpo, // tab animation curves
+              duration: Duration(milliseconds: 500), // tab animation duration
+              gap: 20, // the tab button gap between icon and text
+              color: Theme.of(context).primaryColorLight, // unselected icon color
+              activeColor: Theme.of(context).primaryColorDark, // selected icon and text color
+              iconSize: 24, // tab button icon size
+              tabBackgroundColor: Theme.of(context).primaryColor.withOpacity(0.10), // selected tab background color
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 6),
+              selectedIndex:cubit.current ,// navigation bar padding
+              tabs: [
+                GButton(
+                  icon: Icons.add,
+                  text: 'New',
+                ),
+                GButton(
+                  icon: Icons.check_circle_outline_rounded,
+                  text: 'Done',
+                ),
+                GButton(
+                  icon: Icons.archive,
+                  text: 'Archive',
+                ),
+              ],
+              onTabChange: (value) {
                 cubit.changeIndex(value);
               },
-              currentIndex: cubit.current,
-              items: cubit.navigationItems),
+            ),
+          ),
           floatingActionButton: FloatingActionButton(
             child: Icon(cubit.fabIcon),
             onPressed: () {
