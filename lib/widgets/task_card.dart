@@ -45,7 +45,7 @@ class TaskCard extends StatelessWidget {
       background:leftBackground,
       secondaryBackground:rightBackground,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 15),
         child: Row(
           children: [
             CircleAvatar(

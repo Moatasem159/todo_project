@@ -20,8 +20,8 @@ class ActionContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon,color: Colors.white,size: 30,),
-          Text(title,style: TextStyle(color: Colors.white,fontSize:20 ),)
+          Icon(icon,color: Colors.white,size: 15,),
+          Text(title,style: TextStyle(color: Colors.white,fontSize:15 ),)
         ],
       ),
     );

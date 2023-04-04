@@ -43,7 +43,7 @@ class TasksList extends StatelessWidget {
       },
       separatorBuilder: (context, index) => Container(
         width: double.infinity,
-        height: 1,
+        height: .1,
         color: Colors.grey,
       ),
     );

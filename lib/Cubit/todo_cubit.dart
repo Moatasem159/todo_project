@@ -1,58 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:todo/screens/ArchivedScreen.dart';
 import 'package:todo/Cubit/States.dart';
-import 'package:todo/screens/DoneScreen.dart';
-import 'package:todo/screens/TasksScreen.dart';
-
 class ToDoCubit extends Cubit<ToDoStates>{
   ToDoCubit() : super(ToDoInitialState());
-   static ToDoCubit get(context)=>BlocProvider.of(context);
-
-  int current = 0;
-  List<BottomNavigationBarItem> navigationItems =
-  [
-    BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.listCheck), label: "Tasks"),
-    BottomNavigationBarItem(icon: Icon(Icons.check_box_outlined), label: "Done Tasks"),
-    BottomNavigationBarItem(icon: Icon(Icons.archive_outlined), label: "Archive"),];
-  List<Widget> screens =
-  [
-    TasksScreen(),
-    DoneScreen(),
-    ArchivedScreen()
-  ];
-  List<String>title =
-  [
-    "Tasks",
-    "Done Tasks",
-    "Archive Tasks",
-  ];
-
-  void changeIndex(int index){
-    current=index;
-    emit(ToDoChangeBottomNavBarState());
-  }
-
-
-  bool isBottomSheetShown=false;
-  IconData fabIcon=Icons.edit;
-  void changeBottomSheet({bool? isShow, IconData? icon}){
-
-    isBottomSheetShown=isShow!;
-    fabIcon=icon!;
-    emit(ToDoChangeBottomSheetState());
-  }
-
-
-
+ static ToDoCubit get(context)=>BlocProvider.of(context);
   Database? dataBase;
   List<Map> newTasks=[];
   List<Map> doneTasks=[];
   List<Map> archiveTasks=[];
-
-
 
   void createDataBase(){
      openDatabase('todo.db', version: 1,
@@ -76,7 +31,7 @@ class ToDoCubit extends Cubit<ToDoStates>{
      });
   }
 
-   insertInDataBase({required String titleT,required String timeT,required String dateT})async{
+  insertInDataBase({required String titleT,required String timeT,required String dateT})async{
     return await dataBase!.transaction((txn) {
       return txn.rawInsert(
           'INSERT INTO tasks(title,date,time,status) VALUES("$titleT","$dateT","$timeT","new")')
@@ -89,17 +44,15 @@ class ToDoCubit extends Cubit<ToDoStates>{
     });
   }
 
-
   void getAllDataFromDataBase(database){
 
     newTasks=[];
     doneTasks=[];
     archiveTasks=[];
     emit(ToDoGetAllDataFromDataBaseLoadingState());
-
     database!.rawQuery('SELECT * FROM tasks').then((value){
 
-      value.forEach((element) {
+      value.forEach((element){
         if(element['status']=='new'){
           newTasks.add(element);
         }
@@ -114,7 +67,6 @@ class ToDoCubit extends Cubit<ToDoStates>{
       });
       emit(ToDoGetAllDataFromDataBaseState());
     });
-
   }
 
    updateData({required String status,required int id})async{
@@ -135,5 +87,3 @@ class ToDoCubit extends Cubit<ToDoStates>{
      });
   }
 }
-
-

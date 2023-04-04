@@ -5,9 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo/Cubit/Shared_Preferences.dart';
 import 'package:todo/Cubit/States.dart';
-
-import '../Global.dart';
-
+var primaryLight=Colors.purple;
+var primaryDark=Colors.orange;
 class ThemeCubit extends Cubit<ThemesStates>{
   ThemeCubit() : super(AppThemeInitialState());
   static ThemeCubit get(context)=>BlocProvider.of(context);
@@ -25,38 +24,38 @@ class ThemeCubit extends Cubit<ThemesStates>{
       color: Colors.white60,
     ),
     textTheme: TextTheme(
-      bodyText1: GoogleFonts.workSans(
+      bodyLarge: GoogleFonts.workSans(
           color: Colors.white,
           fontSize: 25,
           fontWeight: FontWeight.w600
       ),
-      subtitle1: GoogleFonts.workSans(
+      titleMedium: GoogleFonts.workSans(
         color: Colors.white,
         fontSize: 15,
       ),
-      bodyText2: GoogleFonts.workSans(
+      bodyMedium: GoogleFonts.workSans(
         color: Colors.white,
         fontSize: 20,
       ),
-      subtitle2: GoogleFonts.workSans(
+      titleSmall: GoogleFonts.workSans(
         color: Colors.white70,
         fontSize: 15,
       ),
-      headline1: GoogleFonts.workSans(
+      displayLarge: GoogleFonts.workSans(
         color: Colors.white,
         fontSize: 18,
       ),
-      headline2: GoogleFonts.workSans(
+      displayMedium: GoogleFonts.workSans(
         color: Colors.white,
         fontSize: 25,
       ),
-      overline: GoogleFonts.workSans(),
-      headline4: GoogleFonts.workSans(),
-      headline3: GoogleFonts.workSans(),
-      headline5: GoogleFonts.workSans(),
-      headline6: GoogleFonts.workSans(),
-      button: GoogleFonts.workSans(),
-      caption: GoogleFonts.workSans(),
+      labelSmall: GoogleFonts.workSans(),
+      headlineMedium: GoogleFonts.workSans(),
+      displaySmall: GoogleFonts.workSans(),
+      headlineSmall: GoogleFonts.workSans(),
+      titleLarge: GoogleFonts.workSans(),
+      labelLarge: GoogleFonts.workSans(),
+      bodySmall: GoogleFonts.workSans(),
     ),
     primaryColor: primaryDark,
     primarySwatch:primaryDark ,
@@ -99,41 +98,37 @@ class ThemeCubit extends Cubit<ThemesStates>{
         backgroundColor: primaryLight
     ),
     textTheme: TextTheme(
-      bodyText1:GoogleFonts.workSans(
+      bodyLarge:GoogleFonts.workSans(
         color: Colors.white,
           fontSize:25,
           fontWeight: FontWeight.w600
       ),
-      subtitle1: GoogleFonts.workSans(
+      titleMedium: GoogleFonts.workSans(
         color: Colors.white,
         fontSize:15,
       ),
-      bodyText2: GoogleFonts.workSans(
+      bodyMedium: GoogleFonts.workSans(
         color: Colors.black,
         fontSize: 20,
       ),
-      subtitle2: GoogleFonts.workSans(
+      titleSmall: GoogleFonts.workSans(
         color: Colors.grey[500],
         fontSize: 15,
       ),
-      headline1:  GoogleFonts.workSans(
+      displayLarge:  GoogleFonts.workSans(
         color: Colors.white,
         fontSize:18,
       ),
-      headline2:  GoogleFonts.workSans(
+      displayMedium:  GoogleFonts.workSans(
         color: Colors.white,
         fontSize:25,
       ),
-      overline: GoogleFonts.workSans(),
-      headline4: GoogleFonts.workSans(),
-      headline3: GoogleFonts.workSans(),
-      headline5: GoogleFonts.workSans(),
+      labelSmall: GoogleFonts.workSans(),
+      headlineMedium: GoogleFonts.workSans(),
+      displaySmall: GoogleFonts.workSans(),
+      headlineSmall: GoogleFonts.workSans(),
     ),
   );
-
-
-
-
 
   Widget icon=Icon(Icons.brightness_7);
   bool dark=false;
@@ -153,5 +148,4 @@ class ThemeCubit extends Cubit<ThemesStates>{
     }
 
   }
-
 }
